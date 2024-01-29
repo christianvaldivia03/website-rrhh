@@ -19,9 +19,6 @@ export const controllerFormulario = (idpersona: any) => {
         }
       );
       setDataControler(transformarJson(await fetchedData));
-      // console.log(await fetchDataPersona(idpersona));
-      // setInitialValues(await fetchDataPersona(idpersona));
-
       if (idpersona != null) {
         const fetchedData = await corePost(
           "http://localhost:3003/api/v1/core/persona/one-search",
@@ -40,8 +37,6 @@ export const controllerFormulario = (idpersona: any) => {
   };
 
   const updatePersona = async (values: any, idpersona: any) => {
-    // const { id_persona, ...rest } = values;
-    // console.log(values);
     try {
       if (idpersona != null) {
         await corePatch("http://localhost:3003/api/v1/core/persona/update", {
@@ -71,23 +66,7 @@ export const controllerFormulario = (idpersona: any) => {
     // fetchDataPersona,
   };
 };
-const fetchDataPersona = async (idpersona: any) => {
-  if (idpersona != null) {
-    try {
-      const fetchedData = await corePost(
-        "http://localhost:3003/api/v1/core/persona/one-search",
-        {
-          id_persona: idpersona,
-        }
-      );
-      return await fetchedData;
-      // console.log(initialValues);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      return await userFromsValue;
-    }
-  }
-};
+
 
 const userFormsData = {
   id_persona: {
