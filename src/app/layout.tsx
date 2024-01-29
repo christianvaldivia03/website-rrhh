@@ -21,7 +21,7 @@ export default function RootLayout({
           <nav></nav>
         </header>
         <main>
-          <div className="flex min-h-screen flex-col items-center justify-between p-24">
+          <div className="">
             {children}
           </div>
         </main>
