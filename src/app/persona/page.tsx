@@ -5,15 +5,11 @@ import { Menu } from "./Menu";
 const page = () => {
   return (
     <>
-      <div className="grid grid-cols-9">
-        <Menu />
-
-        <div className="col-span-8">
-          <h1 className="text-3xl text-secondary">
-            Registro de Personas del sistema
-          </h1>
-          {/* <p>Actualizar</p> */}
-          {/* <Formulario /> */}
+      <div className="">
+        <h1 className="text-3xl text-secondary">
+          Registro de Personas del sistema
+        </h1>
+        <div className=" flex-col items-center justify-center">
           <Person />
         </div>
       </div>

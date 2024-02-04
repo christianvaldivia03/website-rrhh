@@ -1,8 +1,8 @@
-import { corePost } from "@/api/core/corePost";
-import { Persona } from "@/interfaces/core";
-import { useRef, useState } from "react";
-
-// const formikRef = useRef<any>();
+// import { corePost, postServerCore2 } from "@/api/core/corePost";
+// import { Persona } from "@/interfaces/core";
+import { Persona } from "@/server/models/core";
+import { postCore } from "@/server/utils/serverCore";
+import { useState } from "react";
 
 export const handleSearchPersona = () => {
   const [dataStore, setDataStore] = useState<{
@@ -14,21 +14,25 @@ export const handleSearchPersona = () => {
 
   const fetchData = async (formikRef: any) => {
     try {
-      const fetchedData: Persona[] = await corePost(
-        "http://localhost:3003/api/v1/core/persona/search",
+      await postCore(
+        "persona/search",
         {
           nro_doc_per: formikRef.nro_doc_per ? formikRef.nro_doc_per : "",
           ape_pat_per: formikRef.ape_pat_per ? formikRef.ape_pat_per : "",
           ape_mat_per: formikRef.ape_mat_per ? formikRef.ape_mat_per : "",
           nomb_per: formikRef.nomb_per ? formikRef.nomb_per : "",
+        },
+        (v: any, fetchedData: any) => {
+          if (v.ok) {
+            console.log(fetchedData);
+            setDataStore({ ...dataStore, store: fetchedData }); // Update the state with fetched data
+          }
         }
       );
-      setDataStore({ ...dataStore, store: fetchedData }); // Update the state with fetched data
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
-
   return { store, storeTable, fetchData };
 };
 

@@ -69,7 +69,7 @@ export const Tabla = ({
     }
   }
 
-  console.log(currentData);
+  // console.log(currentData);
 
   return (
     <>

@@ -8,6 +8,7 @@ interface Props {
   name?: string;
   type?: string;
   placeholder?: string;
+  init?: any;
   data: any[];
   children?: React.ReactNode;
 }
@@ -16,6 +17,7 @@ export const ComboBoxFormik = ({
   className = "",
   children,
   data,
+  init,
   ...props
 }: Props) => {
   const [field, meta] = useField(props as any);
@@ -41,9 +43,11 @@ export const ComboBoxFormik = ({
           className={`${props.classNameInput || ""} ${fullClassName}`}
           // onSubmit={onSubmit}
         >
-          <option key={0} value={""}>
-            Seleccione
-          </option>
+          {init != undefined && init != null && (
+            <option key={0} value={init.value}>
+              {init.mensaje}
+            </option>
+          )}
           {data != undefined &&
             data != null &&
             data.map((item: any) => (

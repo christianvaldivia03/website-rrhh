@@ -1,8 +1,9 @@
-import { corePatch, corePost } from "@/api/core/corePost";
+// import { corePatch, corePost, postServerCore } from "@/api/core/corePost";
+import { Persona } from "@/server/models/core/Persona.class";
+import { patchCore, postCore } from "@/server/utils/serverCore";
 import { useState } from "react";
 
 export const controllerFormulario = (idpersona: any) => {
-  // console.log(idpersona);
   const [dataControler, setDataControler] = useState<{ [key: string]: any }>(
     {}
   );
@@ -12,45 +13,77 @@ export const controllerFormulario = (idpersona: any) => {
 
   const fetchDataEntidad = async () => {
     try {
-      const fetchedData = await corePost(
-        "http://localhost:3003/api/v1/core/mantenimiento/search-list",
+      await postCore(
+        "mantenimiento/search-list",
         {
           entidad: "DOC-IDENTIDAD,PAIS",
+        },
+        (v: any, l: any) => {
+          if (v.ok) setDataControler(transformarJson(l));
         }
       );
-      setDataControler(transformarJson(await fetchedData));
+
       if (idpersona != null) {
-        const fetchedData = await corePost(
-          "http://localhost:3003/api/v1/core/persona/one-search",
+        await postCore(
+          "persona/one-search",
           {
             id_persona: idpersona,
+          },
+          (v: any, l: any) => {
+            if (v.ok) {
+              setInitialValues(l);
+            }
           }
         );
-        const updatedInitialValues =
-          (await fetchedData) || (await userFromsValue);
-        setInitialValues(await updatedInitialValues);
+        // const updatedInitialValues =
+        //   (await fetchedData) || (await userFromsValue);
+        // setInitialValues(await updatedInitialValues);
         // console.log(await updatedInitialValues);
+      } else {
+        setInitialValues(userFromsValue);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
+  // const updatePersona = async (values: any, idpersona: any) => {
+  //   const personaData = new Persona(values);
+  //   const { id_persona, ...rest } = personaData;
+  //   let msg = {};
+  //   console.log(personaData);
+  //   if (idpersona != null) {
+  //     msg = await corePatch("persona/update", {
+  //       ...personaData,
+  //     });
+  //   } else {
+  //     msg = await corePost("persona/create", {
+  //       ...rest,
+  //     });
+  //   }
+  //   console.log(msg);
+  // };
   const updatePersona = async (values: any, idpersona: any) => {
-    try {
-      if (idpersona != null) {
-        await corePatch("http://localhost:3003/api/v1/core/persona/update", {
-          ...values,
-        });
-      } else {
-        const { id_persona, ...rest } = values;
-        console.log(rest);
-        await corePost("http://localhost:3003/api/v1/core/persona/create", {
-          ...rest,
-        });
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
+    const data = new Persona(values);
+    const { id_persona, ...rest } = data;
+    if (idpersona != null) {
+      await patchCore("persona/update", { ...data }, (v: any, l: any) => {
+        if (v.ok) {
+          // console.log(l);
+          // console.log("sale");
+        } else {
+          console.log(l.message);
+        }
+      });
+    } else {
+      await postCore("persona/create", { ...rest }, (v: any, l: any) => {
+        if (v.ok) {
+          // console.log(l);
+          // console.log("sale");
+        } else {
+          console.log(l.message);
+        }
+      });
     }
   };
 
@@ -67,7 +100,6 @@ export const controllerFormulario = (idpersona: any) => {
   };
 };
 
-
 const userFormsData = {
   id_persona: {
     name: "id_persona",
@@ -77,7 +109,7 @@ const userFormsData = {
   tipo_per: {
     name: "tipo_per",
     placeholder: "Nombre",
-    type: "text",
+    type: "number",
   },
   tipo_doc_per: {
     name: "tipo_doc_per",
@@ -122,7 +154,7 @@ const userFormsData = {
   id_pais_nac: {
     name: "id_pais_nac",
     placeholder: "Nombre",
-    type: "text",
+    type: "number",
   },
   aud_fech_crea: {
     name: "aud_fech_crea",
@@ -164,6 +196,25 @@ const userFromsValue = {
   nro_ruc: "",
   // id_pais_emisor_doc: 2087,
 };
+
+// const userFromsValue = {
+//   id_persona: undefined,
+//   tipo_per: undefined,
+//   tipo_doc_per: undefined,
+//   nro_doc_per: undefined,
+//   ape_pat_per: undefined,
+//   ape_mat_per: undefined,
+//   nomb_per: undefined,
+//   direc_per: undefined,
+//   sex_per: undefined,
+//   // fech_nac_per: "",
+//   id_pais_nac: undefined,
+//   // aud_fech_crea: "",
+//   est_civil_per: undefined,
+//   // id_ubigeo_nac: "",
+//   nro_ruc: undefined,
+//   // id_pais_emisor_doc: 2087,
+// };
 
 const transformarJson = (jsonData: { [key: string]: any }) => {
   const resultado: { [key: string]: any } = {};

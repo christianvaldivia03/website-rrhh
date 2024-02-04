@@ -29,20 +29,20 @@ export const FormularioModal = ({ handleClose, idpersona }: any) => {
   }, [idpersona]);
 
   const validationSchema = Yup.object({
-    tipo_per: Yup.string().required("Este campo es requerido"),
-    tipo_doc_per: Yup.string().required("Este campo es requerido"),
-    nro_doc_per: Yup.string().required("Este campo es requerido"),
-    ape_pat_per: Yup.string().required("Este campo es requerido"),
-    ape_mat_per: Yup.string().required("Este campo es requerido"),
-    nomb_per: Yup.string().required("Este campo es requerido"),
-    direc_per: Yup.string().required("Este campo es requerido"),
-    sex_per: Yup.string().required("Este campo es requerido"),
-    // fech_nac_per: "",
-    id_pais_nac: Yup.string().required("Este campo es requerido"),
-    // aud_fech_crea: "",
-    est_civil_per: Yup.string().required("Este campo es requerido"),
-    // id_ubigeo_nac: "",
-    nro_ruc: Yup.string().required("Este campo es requerido"),
+    // tipo_per: Yup.string().required("Este campo es requerido"),
+    // tipo_doc_per: Yup.string().required("Este campo es requerido"),
+    // nro_doc_per: Yup.string().required("Este campo es requerido"),
+    // ape_pat_per: Yup.string().required("Este campo es requerido"),
+    // ape_mat_per: Yup.string().required("Este campo es requerido"),
+    // nomb_per: Yup.string().required("Este campo es requerido"),
+    // direc_per: Yup.string().required("Este campo es requerido"),
+    // sex_per: Yup.string().required("Este campo es requerido"),
+    // // fech_nac_per: "",
+    // id_pais_nac: Yup.string().required("Este campo es requerido"),
+    // // aud_fech_crea: "",
+    // est_civil_per: Yup.string().required("Este campo es requerido"),
+    // // id_ubigeo_nac: "",
+    // nro_ruc: Yup.string().required("Este campo es requerido"),
   });
   // console.log(handleClose);
 
@@ -103,6 +103,7 @@ export const FormularioModal = ({ handleClose, idpersona }: any) => {
                               <p className="col-span-2">Tipo documento: </p>
                               <ComboBoxFormik
                                 data={dataControler["DOC-IDENTIDAD"]}
+                                init={{ value: 0, mensaje: "Seleccione" }}
                                 {...userForms.tipo_doc_per}
                                 className="col-span-5 md:col-span-5"
                               />
@@ -127,6 +128,7 @@ export const FormularioModal = ({ handleClose, idpersona }: any) => {
                                   { id: 1, name: "Natural" },
                                   { id: 2, name: "Juridico" },
                                 ]}
+                                init={{ value: 0, mensaje: "Seleccione" }}
                                 {...userForms.tipo_per}
                                 className="col-span-5 md:col-span-5"
                               />
@@ -189,6 +191,7 @@ export const FormularioModal = ({ handleClose, idpersona }: any) => {
                                   { id: "M", name: "Masculino" },
                                   { id: "F", name: "Femenino" },
                                 ]}
+                                init={{ value: "", mensaje: "Seleccione" }}
                                 {...userForms.sex_per}
                                 className="col-span-5 md:col-span-5"
                               />
@@ -204,6 +207,7 @@ export const FormularioModal = ({ handleClose, idpersona }: any) => {
                                   { id: "D", name: "Divorciado" },
                                   { id: "V", name: "Viudo" },
                                 ]}
+                                init={{ value: "", mensaje: "Seleccione" }}
                                 {...userForms.est_civil_per}
                                 className="col-span-5 md:col-span-5"
                               />
@@ -215,6 +219,7 @@ export const FormularioModal = ({ handleClose, idpersona }: any) => {
                               <ComboBoxFormik
                                 data={dataControler["PAIS"]}
                                 {...userForms.id_pais_nac}
+                                init={{ value: 0, mensaje: "Seleccione" }}
                                 className="col-span-5 md:col-span-5"
                               />
                             </div>
