@@ -24,7 +24,6 @@ export const Person = () => {
     setAction(value);
   };
   const onUpdate = (value: any) => {
-    // console.log( value);
     setIdpersona(value.id_persona);
     handleOpen();
   };

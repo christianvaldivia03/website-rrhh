@@ -21,9 +21,7 @@ export const ComboBoxFormik = ({
   ...props
 }: Props) => {
   const [field, meta] = useField(props as any);
-  // // console.log(useField(props as any));
-  // console.log(field);
-  // console.log(meta);
+
   let error = meta.error && meta.touched ? meta.error : null;
   let errorClassName =
     "focus:border-rojoBase focus:ring-rojoBase border-rojoBase";
@@ -32,7 +30,7 @@ export const ComboBoxFormik = ({
   let fullClassName = `w-full bg-blanco outline-none focus:border-solid focus:ring-0 duration-300 border rounded-lg px-6 py-2 ${
     error ? errorClassName : noErrorClassName
   }`;
-  // console.log("datita", data);
+
   return (
     <div className={className}>
       <div className="flex items-center h-full">

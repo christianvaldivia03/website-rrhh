@@ -1,6 +1,6 @@
 // import { corePatch, corePost, postServerCore } from "@/api/core/corePost";
 import { Persona } from "@/server/models/core/Persona.class";
-import { patchCore, postCore } from "@/server/utils/serverCore";
+import { patchCore, postCore } from "@/server/utils";
 import { useState } from "react";
 
 export const controllerFormulario = (idpersona: any) => {
@@ -35,10 +35,6 @@ export const controllerFormulario = (idpersona: any) => {
             }
           }
         );
-        // const updatedInitialValues =
-        //   (await fetchedData) || (await userFromsValue);
-        // setInitialValues(await updatedInitialValues);
-        // console.log(await updatedInitialValues);
       } else {
         setInitialValues(userFromsValue);
       }
@@ -47,41 +43,21 @@ export const controllerFormulario = (idpersona: any) => {
     }
   };
 
-  // const updatePersona = async (values: any, idpersona: any) => {
-  //   const personaData = new Persona(values);
-  //   const { id_persona, ...rest } = personaData;
-  //   let msg = {};
-  //   console.log(personaData);
-  //   if (idpersona != null) {
-  //     msg = await corePatch("persona/update", {
-  //       ...personaData,
-  //     });
-  //   } else {
-  //     msg = await corePost("persona/create", {
-  //       ...rest,
-  //     });
-  //   }
-  //   console.log(msg);
-  // };
   const updatePersona = async (values: any, idpersona: any) => {
     const data = new Persona(values);
     const { id_persona, ...rest } = data;
     if (idpersona != null) {
       await patchCore("persona/update", { ...data }, (v: any, l: any) => {
         if (v.ok) {
-          // console.log(l);
-          // console.log("sale");
         } else {
-          console.log(l.message);
+          // console.log(l.message);
         }
       });
     } else {
       await postCore("persona/create", { ...rest }, (v: any, l: any) => {
         if (v.ok) {
-          // console.log(l);
-          // console.log("sale");
         } else {
-          console.log(l.message);
+          // console.log(l.message);
         }
       });
     }
@@ -196,25 +172,6 @@ const userFromsValue = {
   nro_ruc: "",
   // id_pais_emisor_doc: 2087,
 };
-
-// const userFromsValue = {
-//   id_persona: undefined,
-//   tipo_per: undefined,
-//   tipo_doc_per: undefined,
-//   nro_doc_per: undefined,
-//   ape_pat_per: undefined,
-//   ape_mat_per: undefined,
-//   nomb_per: undefined,
-//   direc_per: undefined,
-//   sex_per: undefined,
-//   // fech_nac_per: "",
-//   id_pais_nac: undefined,
-//   // aud_fech_crea: "",
-//   est_civil_per: undefined,
-//   // id_ubigeo_nac: "",
-//   nro_ruc: undefined,
-//   // id_pais_emisor_doc: 2087,
-// };
 
 const transformarJson = (jsonData: { [key: string]: any }) => {
   const resultado: { [key: string]: any } = {};

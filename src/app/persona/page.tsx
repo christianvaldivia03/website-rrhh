@@ -1,6 +1,5 @@
 import { Person } from "@/components/persona/Person";
 import React from "react";
-import { Menu } from "./Menu";
 
 const page = () => {
   return (

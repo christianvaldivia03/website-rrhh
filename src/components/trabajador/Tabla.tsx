@@ -69,7 +69,6 @@ export const Tabla = ({
     }
   }
 
-
   return (
     <>
       <div className="table">
@@ -94,7 +93,7 @@ export const Tabla = ({
           </thead>
           <tbody className="letterTable">
             {currentData.map((item: any) => (
-              <tr key={item.id_persona}>
+              <tr key={`${item.id_persona}-${item.id_corr_trab}`}>
                 {dataTable.map((key: any) => (
                   <td
                     key={key.id}

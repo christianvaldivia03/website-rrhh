@@ -1,7 +1,7 @@
 // import { corePost, postServerCore2 } from "@/api/core/corePost";
 // import { Persona } from "@/interfaces/core";
 import { Persona } from "@/server/models/core";
-import { postCore } from "@/server/utils/serverCore";
+import { postCore } from "@/server/utils";
 import { useState } from "react";
 
 export const handleSearchPersona = () => {
@@ -24,7 +24,6 @@ export const handleSearchPersona = () => {
         },
         (v: any, fetchedData: any) => {
           if (v.ok) {
-            console.log(fetchedData);
             setDataStore({ ...dataStore, store: fetchedData }); // Update the state with fetched data
           }
         }

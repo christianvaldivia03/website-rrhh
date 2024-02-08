@@ -11,7 +11,7 @@ import { ButtonNext } from "@/shared/Components/ButtonNext";
 import MensajeEnviadoCorrectamenteIcon from "@/shared/icons/MensajeEnviadoCorrectamenteIcon";
 
 export const FormularioModal = ({ handleClose, idpersona }: any) => {
-  // console.log(idpersona);
+
   const {
     dataControler,
     fetchDataEntidad,
@@ -23,35 +23,31 @@ export const FormularioModal = ({ handleClose, idpersona }: any) => {
 
   useEffect(() => {
     fetchDataEntidad();
-    // fetchDataPersona();
-    // initialValues;
-    // console.log(initialValues);
+
   }, [idpersona]);
 
   const validationSchema = Yup.object({
-    // tipo_per: Yup.string().required("Este campo es requerido"),
-    // tipo_doc_per: Yup.string().required("Este campo es requerido"),
-    // nro_doc_per: Yup.string().required("Este campo es requerido"),
-    // ape_pat_per: Yup.string().required("Este campo es requerido"),
-    // ape_mat_per: Yup.string().required("Este campo es requerido"),
-    // nomb_per: Yup.string().required("Este campo es requerido"),
-    // direc_per: Yup.string().required("Este campo es requerido"),
-    // sex_per: Yup.string().required("Este campo es requerido"),
-    // // fech_nac_per: "",
-    // id_pais_nac: Yup.string().required("Este campo es requerido"),
-    // // aud_fech_crea: "",
-    // est_civil_per: Yup.string().required("Este campo es requerido"),
-    // // id_ubigeo_nac: "",
-    // nro_ruc: Yup.string().required("Este campo es requerido"),
+    tipo_per: Yup.string().required("Este campo es requerido"),
+    tipo_doc_per: Yup.string().required("Este campo es requerido"),
+    nro_doc_per: Yup.string().required("Este campo es requerido"),
+    ape_pat_per: Yup.string().required("Este campo es requerido"),
+    ape_mat_per: Yup.string().required("Este campo es requerido"),
+    nomb_per: Yup.string().required("Este campo es requerido"),
+    direc_per: Yup.string().required("Este campo es requerido"),
+    sex_per: Yup.string().required("Este campo es requerido"),
+    // fech_nac_per: "",
+    id_pais_nac: Yup.string().required("Este campo es requerido"),
+    // aud_fech_crea: "",
+    est_civil_per: Yup.string().required("Este campo es requerido"),
+    // id_ubigeo_nac: "",
+    nro_ruc: Yup.string().required("Este campo es requerido"),
   });
-  // console.log(handleClose);
+
 
   const onSubmit = (values: any, { setSubmitting }: any) => {
     setSubmitting(false);
     setIsSuccessfull(true);
     updatePersona(values, idpersona);
-    // console.log(values);
-    // handleClose();
   };
   function classNames(...classes: any) {
     return classes.filter(Boolean).join(" ");
