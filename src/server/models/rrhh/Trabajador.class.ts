@@ -1,4 +1,5 @@
 import { Persona } from "../core";
+import { TrabajadorConcepto } from "./TrabajadorConcepto.class";
 
 export class Trabajador {
   id_persona?: number;
@@ -45,6 +46,8 @@ export class Trabajador {
   id_persona_registro?: number;
   id_filefoto?: number;
   persona?: Persona;
+
+  trabajadorConcepto?: TrabajadorConcepto[];
 
   constructor(data: Partial<Trabajador>) {
     Object.assign(this, data);
