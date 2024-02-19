@@ -9,7 +9,6 @@ import { FormTrabajador } from "./FormTrabajador";
 import { ButtonNext } from "@/shared/Components/ButtonNext";
 import { SumSign } from "@/shared/icons/SumSign";
 
-
 export const Trabajador = () => {
   const [action, setAction] = useState({});
   const { store, storeTable, fetchData } = handleSearchTrabajador();
