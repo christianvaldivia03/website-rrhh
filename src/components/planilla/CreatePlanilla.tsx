@@ -170,7 +170,7 @@ export const CreatePlanilla = ({ handleClose, onCreatePlanilla }: any) => {
                     type="submit"
                     className="flex justify-end "
                     valor="Buscar"
-                    classNameBotton="bg-[#6366F1] text-white letter rounded-sm px-4 py-2 mt-4"
+                    classNameBotton="bg-primary text-white letter rounded-sm px-4 py-2 mt-4"
                   />
                 </Form>
               );

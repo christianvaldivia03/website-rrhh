@@ -422,7 +422,7 @@ export const FormTrabajador = ({ handleClose, idpersona, idcorrtrab }: any) => {
                 <div className="flex items-center justify-end space-x-8">
                   <ButtonNext
                     type="submit"
-                    valor={idpersona ? "Actualizar" : "Crear Persona"}
+                    valor={idpersona ? "Actualizar" : "Crear Trabajador"}
                     classNameBotton="flex items-center justify-center gap-x-2 "
                     // onClick={handleOpen}
                   >

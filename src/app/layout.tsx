@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../../styles/globals.css";
 import { CircleInit } from "@/shared/icons/CircleInit";
+import { Menu } from "./Menu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
               </div>
               <p className="text-center">Sistema RRHH</p>
             </div>
+            {/* <Menu /> */}
           </header>
         </div>
         <main className="flex-1 text-white p-4">{children}</main>

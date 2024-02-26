@@ -8,9 +8,9 @@ const page = () => {
   return (
     <div>
       <div>
-        <h1 className="text-3xl text-secondary">Planillas del sistema</h1>
+        <h1 className="text-3xl text-secondary mb-2">Planillas del sistemas</h1>
       </div>
-      <div className="relative">
+      <div className=" max-w-[1500px] m-auto flex-col items-center justify-center">
         <PlanillaInit />
       </div>
     </div>

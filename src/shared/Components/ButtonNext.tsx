@@ -16,7 +16,7 @@ export const ButtonNext = (props: Props) => {
       <button
         type={props.type as "button" | "submit" | "reset" | undefined} // Fix: Update the type of the 'type' prop
         onClick={props.onClick}
-        className={`${props.classNameBotton} bg-[#6366F1] text-white letter rounded-sm px-4 py-2`}
+        className={`${props.classNameBotton} bg-primary hover:bg-[#4d4fc7] text-white letter rounded-sm px-4 py-2`}
       >
         {props.valor}
         {props.children}

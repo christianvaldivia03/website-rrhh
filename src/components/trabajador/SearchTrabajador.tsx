@@ -19,8 +19,8 @@ export const SearchTrabajador = ({ onSearch }: any) => {
       <Formik initialValues={formData} onSubmit={onSearch}>
         {(formikProps) => {
           return (
-            <Form>
-              <div className="grid grid-cols-4 gap-4 forms">
+            <Form className="flex items-center">
+              <div className="grid grid-cols-3 gap-4 forms flex-1">
                 <div className="col-span-1">
                   <TextInputFormik
                     type="text"
@@ -61,9 +61,9 @@ export const SearchTrabajador = ({ onSearch }: any) => {
               </div>
               <ButtonNext
                 type="submit"
-                className="flex justify-end mt-4"
+                className="flex justify-end my-4 mx-6"
                 valor="Buscar"
-                classNameBotton="bg-[#6366F1] text-white letter rounded-sm px-4 py-2"
+                classNameBotton="bg-primary hover:bg-[#4d4fc7] text-white letter rounded-sm px-8 py-3"
               />
             </Form>
           );

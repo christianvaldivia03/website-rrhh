@@ -1,13 +1,10 @@
 "use client";
 import { Tab } from "@headlessui/react";
 import React, { useEffect, useState } from "react";
-import { PanelResumen } from "./PanelResumen";
 import { PanelItems } from "./PanelItems";
 import { postRrhh, rutaRrhh } from "@/server/utils";
-import { Concepto, Planilla } from "@/server/models/rrhh";
+import { Concepto, Planilla, PlanillaTrabajador } from "@/server/models/rrhh";
 import { PanelTrabajador } from "./PanelTrabajador";
-import { on } from "events";
-import { id } from "date-fns/locale";
 
 export default function Post({ params }: { params: any }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -20,8 +17,11 @@ export default function Post({ params }: { params: any }) {
     nombres: "",
   });
 
-  //   console.log("idplanilla", idplanilla);
-  const [dataInit, setDataInit] = useState<Planilla | null>(null);
+  const [dataInit, setDataInit] = useState<{
+    dataPlanilla: Planilla | null;
+    planillatrabajador: PlanillaTrabajador[] | null;
+  }>({ dataPlanilla: null, planillatrabajador: null });
+  const { dataPlanilla, planillatrabajador } = dataInit;
 
   const onSearchPlanilla = (value: number) => {
     postRrhh(
@@ -29,27 +29,17 @@ export default function Post({ params }: { params: any }) {
       { id_planilla: idplanilla },
       (v: any, fetchData: any) => {
         if (v.ok) {
-          setDataInit(fetchData);
+          console.log("fetchData", fetchData);
+          setDataInit({
+            dataPlanilla: fetchData.dataPlanilla,
+            planillatrabajador: fetchData.planillatrabajador,
+          });
+        } else {
+          console.log("fetchData", fetchData);
         }
       }
     );
   };
-
-  // const onDataConcepto = () => {
-  //   postRrhh(
-  //     rutaRrhh.search_concepto_planilla_trabajador,
-  //     {
-  //       id_planilla: idplanilla,
-  //       id_persona: idpersona,
-  //       id_corr_trab: idcorrtrab,
-  //     },
-  //     (v: any, fetchData: any) => {
-  //       if (v.ok) {
-  //         setDataConcepto(fetchData);
-  //       }
-  //     }
-  //   );
-  // };
 
   useEffect(() => {
     onSearchPlanilla(idplanilla);
@@ -65,62 +55,72 @@ export default function Post({ params }: { params: any }) {
     setSelectedIndex(1);
   };
 
-  if (!dataInit) return <div>Cargando...</div>;
+  const [panelClick, setPanelClick] = useState(null);
+
+  if (!dataPlanilla) return <div className="text-black">Cargando...</div>;
   return (
     <div className="text-black">
-      <div className="bg-primary">mi id es : {idplanilla}</div>
       <div>
-        <h1 className="text-3xl text-secondary">Planillas del sistema</h1>
+        <h1 className="text-3xl text-secondary mb-4">Detalle Planilla</h1>
       </div>
-      <div className="flex items-center ">
-        <div className=" flex flex-col w-[300px]">
+      <div className="flex items-center letterTableHeader mb-4 ">
+        <div className=" flex flex-col w-[200px]">
           <div className="flex gap-x-4 items-center">
             <p className=" flex w-[100px] justify-end ">Año:</p>
-            <p className="flex-grow">{dataInit.id_anio}</p>
+            <p className="flex-grow">{dataPlanilla.id_anio}</p>
           </div>
           <div className="flex gap-x-4 items-center">
             <p className=" flex w-[100px] justify-end ">Mes:</p>
-            <p className="flex-grow">{dataInit.mes?.nomb_mes}</p>
+            <p className="flex-grow">{dataPlanilla.mes?.nomb_mes}</p>
           </div>
         </div>
-        <div className=" flex flex-col w-[300px]">
+        <div className=" flex flex-col w-[400px]">
           <div className="flex gap-x-4 items-center">
-            <p className=" flex w-[100px] justify-end ">Tipo Planilla:</p>
-            <p className="flex-grow">{dataInit.planillatipo?.nomb_tipo_pla}</p>
+            <p className=" flex w-[200px] justify-end ">Tipo Planilla:</p>
+            <p className="flex-grow">
+              {dataPlanilla.planillatipo?.nomb_tipo_pla}
+            </p>
           </div>
           <div className="flex gap-x-4 items-center">
-            <p className=" flex w-[100px] justify-end ">Tipo Trabajador:</p>
+            <p className=" flex w-[200px] justify-end ">Tipo Trabajador:</p>
             <p className="flex-grow">
-              {dataInit.trabajadortipo?.desc_tipo_trabajador}
+              {dataPlanilla.trabajadortipo?.desc_tipo_trabajador}
             </p>
           </div>
         </div>
         <div className=" flex flex-col w-[300px]">
           <div className="flex gap-x-4 items-center">
             <p className=" flex w-[100px] justify-end ">Numero de Planilla:</p>
-            <p className="flex-grow">{dataInit.num_planilla}</p>
+            <p className="flex-grow">{dataPlanilla.num_planilla}</p>
           </div>
         </div>
       </div>
       <div>
         <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-          <Tab.List>
-            <Tab>Resumen</Tab>
-            <Tab>Items</Tab>
-            <Tab>Trabajadores</Tab>
+          <Tab.List className="flex bg-gray-800 rounded-t-lg">
+            <Tab className="px-6 py-3 mx-2 text-gray-300 hover:bg-gray-700 rounded-t-lg">
+              Resumen
+            </Tab>
+            <Tab className="px-6 py-3 mx-2 text-gray-300 hover:bg-gray-700 rounded-t-lg">
+              Items
+            </Tab>
+            <Tab className="px-6 py-3 mx-2 text-gray-300 hover:bg-gray-700 rounded-t-lg">
+              Trabajadores
+            </Tab>
           </Tab.List>
-          <Tab.Panels>
-            <Tab.Panel>
+          <Tab.Panels className="bg-white rounded-b-lg">
+            <Tab.Panel className="p-4">
               <PanelTrabajador
-                storeTrabajador={dataInit.planillatrabajador}
+                storeTrabajador={planillatrabajador}
                 onDetalle={onDetalle}
+                idplanilla={idplanilla}
               />
             </Tab.Panel>
-            <Tab.Panel>
+            <Tab.Panel className="p-4">
               <PanelItems dataPersona={dataPersona} />
             </Tab.Panel>
-            <Tab.Panel>
-              <p>Resumen</p>
+            <Tab.Panel className="p-4">
+              {/* <ModuleTrabajadorSearch  /> */}
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>

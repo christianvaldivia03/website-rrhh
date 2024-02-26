@@ -10,8 +10,7 @@ import { SumSign } from "@/shared/icons/SumSign";
 import { ButtonNext } from "@/shared/Components/ButtonNext";
 import MensajeEnviadoCorrectamenteIcon from "@/shared/icons/MensajeEnviadoCorrectamenteIcon";
 
-export const FormularioModal = ({ handleClose, idpersona }: any) => {
-
+export const FormularioModal = ({ handleClose, idpersona, fetchData }: any) => {
   const {
     dataControler,
     fetchDataEntidad,
@@ -23,7 +22,6 @@ export const FormularioModal = ({ handleClose, idpersona }: any) => {
 
   useEffect(() => {
     fetchDataEntidad();
-
   }, [idpersona]);
 
   const validationSchema = Yup.object({
@@ -43,11 +41,11 @@ export const FormularioModal = ({ handleClose, idpersona }: any) => {
     nro_ruc: Yup.string().required("Este campo es requerido"),
   });
 
-
   const onSubmit = (values: any, { setSubmitting }: any) => {
     setSubmitting(false);
     setIsSuccessfull(true);
     updatePersona(values, idpersona);
+    fetchData({});
   };
   function classNames(...classes: any) {
     return classes.filter(Boolean).join(" ");
@@ -121,8 +119,8 @@ export const FormularioModal = ({ handleClose, idpersona }: any) => {
                               <p className="col-span-2">Tipo Persona: </p>
                               <ComboBoxFormik
                                 data={[
-                                  { id: 1, name: "Natural" },
-                                  { id: 2, name: "Juridico" },
+                                  { id: "N", name: "Natural" },
+                                  { id: "J", name: "Juridico" },
                                 ]}
                                 init={{ value: 0, mensaje: "Seleccione" }}
                                 {...userForms.tipo_per}

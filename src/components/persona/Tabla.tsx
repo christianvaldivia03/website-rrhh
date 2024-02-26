@@ -3,6 +3,7 @@ import { EditIcon } from "@/shared/icons/EditIcon";
 import { TrashIcon } from "@/shared/icons/TrashIcon";
 import React, { useState } from "react";
 import { on } from "events";
+import { ButtonNext } from "@/shared/Components/ButtonNext";
 
 export const Tabla = ({
   dataStore,
@@ -33,6 +34,9 @@ export const Tabla = ({
       setPage({ ...page, sortColumn: column, sortOrder: "asc" });
     }
   };
+
+  let filaAlternada = false;
+  const [filaClicada, setFilaClicada] = useState(null);
 
   // Función para ordenar los datos
   const sortedData = () => {
@@ -69,7 +73,6 @@ export const Tabla = ({
     }
   }
 
-
   return (
     <>
       <div className="table">
@@ -93,51 +96,61 @@ export const Tabla = ({
             </tr>
           </thead>
           <tbody className="letterTable">
-            {currentData.map((item: any) => (
-              <tr key={item.id_persona}>
-                {dataTable.map((key: any) => (
-                  <td
-                    key={key.id}
-                    className={`${key.classr} py-2 px-4 border-b`}
-                  >
-                    {/* {item[key.id]} */}
-                    {valueData(item, key.id, key.render)}
+            {currentData.map((item: any) => {
+              const claseFila = filaAlternada
+                ? "bg-[#F8FAFC] hover:bg-[#f5f2fd]"
+                : "";
+              const filaClicadaClass =
+                filaClicada === item.id_persona ? "bg-[#edebf5]" : claseFila;
+              filaAlternada = !filaAlternada;
+              return (
+                <tr
+                  key={item.id_persona}
+                  className={`${filaClicadaClass} cursor-pointer   `}
+                  onClick={() => {
+                    setFilaClicada(item.id_persona);
+                  }}
+                  onDoubleClick={() => {
+                    onUpdate(item);
+                  }}
+                >
+                  {dataTable.map((key: any) => (
+                    <td
+                      key={key.id}
+                      className={`${key.classr} py-2 px-4 border-b  `}
+                    >
+                      {valueData(item, key.id, key.render)}
+                    </td>
+                  ))}
+                  <td className="py-1 px-4 border-b">
+                    <button
+                      className="  rounded-full hover:bg-gray-200"
+                      onClick={() => {
+                        onUpdate(item);
+                      }}
+                    >
+                      <EditIcon />
+                    </button>
                   </td>
-                ))}
-                <td className="py-1 px-4 border-b">
-                  <button
-                    onClick={() => {
-                      onUpdate(item);
-                    }}
-                  >
-                    <EditIcon />
-                  </button>
-                </td>
-                <td className="py-1 px-4 border-b">
-                  <a>
-                    <TrashIcon />
-                  </a>
-                </td>
-              </tr>
-            ))}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
-        <div className="flex justify-between mt-4">
-          <button
+        <div className="flex justify-between items-center">
+          <ButtonNext
             onClick={() => setPage({ ...page, currentPage: currentPage - 1 })}
-            disabled={currentPage === 1}
-            className="px-4 py-2 bg-blue-500 text-white rounded"
-          >
-            Anterior
-          </button>
-          <span>Página {currentPage}</span>
-          <button
+            className="flex justify-end "
+            valor="Anterior"
+            classNameBotton="bg-primary text-white letter rounded-sm px-4 py-2 mt-4"
+          />
+          <span className="text-black">Página {currentPage}</span>
+          <ButtonNext
             onClick={() => setPage({ ...page, currentPage: currentPage + 1 })}
-            disabled={endIndex >= dataStore.length}
-            className="px-4 py-2 bg-blue-500 text-white rounded"
-          >
-            Siguiente
-          </button>
+            className="flex justify-end "
+            valor="Siguiente"
+            classNameBotton="bg-primary text-white letter rounded-sm px-4 py-2 mt-4"
+          />
         </div>
       </div>
     </>

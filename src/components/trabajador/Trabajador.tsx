@@ -8,6 +8,7 @@ import { Box, Fade } from "@mui/material";
 import { FormTrabajador } from "./FormTrabajador";
 import { ButtonNext } from "@/shared/Components/ButtonNext";
 import { SumSign } from "@/shared/icons/SumSign";
+import { ModalNext } from "@/shared/Components/ModalNext";
 
 export const Trabajador = () => {
   const [action, setAction] = useState({});
@@ -43,10 +44,10 @@ export const Trabajador = () => {
   return (
     <>
       <div>
-        <div>
+        <div className="mb-6">
           <SearchTrabajador onSearch={onSearch} />
         </div>
-        <div>
+        <div className="mb-6">
           <div>
             <ButtonNext
               valor="Crear Trabajador"
@@ -72,34 +73,13 @@ export const Trabajador = () => {
             />
           </div>
         </div>
-
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box
-            className="w-[90%] md:w-[60%]  h-[90vh]  md:h-auto overflow-auto rounded-lg"
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              bgcolor: "transparent",
-            }}
-          >
-            {/* <div className="bg-blanco">
-              <SearchExistPersona />
-            </div> */}
-
-            <FormTrabajador
-              handleClose={handleClose}
-              idpersona={idpersona}
-              idcorrtrab={idcorrtrab}
-            />
-          </Box>
-        </Modal>
+        <ModalNext open={open} handleClose={handleClose}>
+          <FormTrabajador
+            handleClose={handleClose}
+            idpersona={idpersona}
+            idcorrtrab={idcorrtrab}
+          />
+        </ModalNext>
       </div>
     </>
   );

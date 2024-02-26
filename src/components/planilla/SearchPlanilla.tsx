@@ -54,65 +54,66 @@ export const SearchPlanilla = ({ onSearch }: any) => {
         {(formikProps) => {
           return (
             <Form className="forms">
-              <div className="flex items-center ">
-                <div>buuton</div>
-                <div className="">
-                  <div className="grid grid-cols-3 items-center">
-                    <span className="col-span-1 flex justify-end pr-3">
-                      Año:
-                    </span>
-                    <div className="col-span-2">
-                      <ComboBoxFormik
-                        data={[
-                          { id: 1, name: "Natural" },
-                          { id: 2, name: "Juridico" },
-                        ]}
-                        name="id_anio"
-                        // onSubmit={onSubmit}
-                      />
+              <div className="flex items-center justify-between w-full ">
+                <div className="flex min-w-full">
+                  <div className="flex flex-col gap-y-2 min-w-[300px]">
+                    <div className="grid grid-cols-3 items-center w-full">
+                      <span className="col-span-1 flex justify-end pr-3">
+                        Año:
+                      </span>
+                      <div className="col-span-2">
+                        <ComboBoxFormik
+                          data={[
+                            { id: 1, name: "Natural" },
+                            { id: 2, name: "Juridico" },
+                          ]}
+                          name="id_anio"
+                          // onSubmit={onSubmit}
+                        />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-3 items-center">
+                      <span className="col-span-1 flex justify-end pr-3">
+                        Mes
+                      </span>
+                      <div className="col-span-2">
+                        <ComboBoxFormik
+                          data={[
+                            { id: 1, name: "Natural" },
+                            { id: 2, name: "Juridico" },
+                          ]}
+                          name="id_mes"
+                        />
+                      </div>
                     </div>
                   </div>
-                  <div className="grid grid-cols-3 items-center">
-                    <span className="col-span-1 flex justify-end pr-3">
-                      Mes
-                    </span>
-                    <div className="col-span-2">
-                      <ComboBoxFormik
-                        data={[
-                          { id: 1, name: "Natural" },
-                          { id: 2, name: "Juridico" },
-                        ]}
-                        name="id_mes"
-                      />
+                  <div className="flex flex-col gap-y-2 min-w-[400px]">
+                    <div className="grid grid-cols-3 items-center ">
+                      <span className="col-span-1 flex justify-end pr-3">
+                        Número:
+                      </span>
+                      <div className="col-span-2">
+                        <TextInputFormik
+                          type="text"
+                          name="num_planilla"
+                          placeholder="Num planilla"
+                        />
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div className="flex flex-col ">
-                  <div className="grid grid-cols-3 items-center ">
-                    <span className="col-span-1 flex justify-end pr-3">
-                      Número:
-                    </span>
-                    <div className="col-span-2">
-                      <TextInputFormik
-                        type="text"
-                        name="num_planilla"
-                        placeholder="Num planilla"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-3 items-center">
-                    <span className="col-span-1 flex justify-end pr-3">
-                      Situación:
-                    </span>
-                    <div className="col-span-2">
-                      <ComboBoxFormik
-                        data={[
-                          { id: 0, name: "Anulada" },
-                          { id: 1, name: "Abierta" },
-                          { id: 2, name: "Cerrada" },
-                        ]}
-                        name="est_planilla"
-                      />
+                    <div className="grid grid-cols-3 items-center">
+                      <span className="col-span-1 flex justify-end pr-3">
+                        Situación:
+                      </span>
+                      <div className="col-span-2">
+                        <ComboBoxFormik
+                          data={[
+                            { id: 0, name: "Anulada" },
+                            { id: 1, name: "Abierta" },
+                            { id: 2, name: "Cerrada" },
+                          ]}
+                          name="est_planilla"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -121,7 +122,7 @@ export const SearchPlanilla = ({ onSearch }: any) => {
                   type="submit"
                   className="flex justify-end "
                   valor="Buscar"
-                  classNameBotton="bg-[#6366F1] text-white letter rounded-sm px-4 py-2"
+                  classNameBotton="primary text-white letter rounded-sm px-4 py-2"
                 />
               </div>
             </Form>

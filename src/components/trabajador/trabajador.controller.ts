@@ -25,7 +25,6 @@ export const handleSearchTrabajador = () => {
         },
         (v: any, fetchedData: any) => {
           if (v.ok) {
-            // console.log("fetchedData", fetchedData);
             setDataStore({ ...dataStore, store: fetchedData }); // Update the state with fetched data
           }
         }
@@ -91,46 +90,40 @@ const dataTable = [
     classh: "",
   },
   {
-    id: "persona.ape_pat_per",
-    name: "Apellido Paterno",
+    id: "full_name",
+    name: "Nombres",
+    classh: "",
+    classr: "w-[200px] text-left",
+  },
+  {
+    id: "list_tipo_trabajador.desc_tipo_trabajador",
+    name: "Tipo Trabajador",
     classh: "",
     classr: "text-left",
-  },
-  {
-    id: "persona.ape_mat_per",
-    name: "Apellido Materno",
-    classh: "",
-    classr: "",
-  },
-  {
-    id: "persona.nomb_per",
-    name: "Nombre",
-    classh: "",
-    classr: "",
   },
   {
     id: "list_id_regimen_pension.desc_lista",
     name: "Regimen Pension",
     classh: "",
-    classr: "",
+    classr: "w-[150px] text-left",
   },
   {
     id: "list_id_regimen_pension_estado.desc_lista",
     name: "Pension Estado",
     classh: "",
-    classr: "",
+    classr: "w-[120px] text-left",
   },
   {
     id: "list_id_regimen_salud.desc_lista",
     name: "Regimen Salud",
     classh: "",
-    classr: "",
+    classr: "w-[120px] text-left",
   },
   {
     id: "list_id_tipo_cuent_banco.desc_lista",
     name: "Tipo Cuenta Banco",
     classh: "",
-    classr: "",
+    classr: "w-[150px] text-left",
   },
 ];
 

@@ -21,6 +21,7 @@ export const handleSearchPersona = () => {
           ape_pat_per: formikRef.ape_pat_per ? formikRef.ape_pat_per : "",
           ape_mat_per: formikRef.ape_mat_per ? formikRef.ape_mat_per : "",
           nomb_per: formikRef.nomb_per ? formikRef.nomb_per : "",
+          tipo_per: formikRef.tipo_per ? formikRef.tipo_per : "",
         },
         (v: any, fetchedData: any) => {
           if (v.ok) {

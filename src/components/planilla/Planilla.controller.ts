@@ -29,22 +29,6 @@ export const handleSearchPlanilla = () => {
 };
 const dataTable = [
   {
-    id: "id_planilla",
-    name: "Código",
-    classh: "",
-  },
-  {
-    id: "id_tipo_planilla",
-    name: "Tipo Planilla",
-    classh: "",
-  },
-  {
-    id: "id_tipo_trabajador",
-    name: "Tipo Trabajador",
-    classh: "",
-    classr: "text-left",
-  },
-  {
     id: "id_anio",
     name: "Año",
     classh: "",
@@ -56,6 +40,19 @@ const dataTable = [
     classh: "",
     classr: "",
   },
+
+  {
+    id: "planillatipo.nomb_tipo_pla",
+    name: "Tipo Planilla",
+    classh: "",
+  },
+  {
+    id: "trabajadortipo.desc_tipo_trabajador",
+    name: "Tipo Trabajador",
+    classh: "",
+    classr: "text-left",
+  },
+
   {
     id: "num_planilla",
     name: "Número Planilla",
@@ -67,5 +64,14 @@ const dataTable = [
     name: "Fecha Registro",
     classh: "",
     classr: "",
+  },
+  {
+    id: "est_planilla",
+    name: "Estado Planilla",
+    classh: "",
+    classr: "",
+    render: function (objeto: any) {
+      return objeto == "1" ? "ABIERO" : "2" ? "CERRADO" : "ANULADO";
+    },
   },
 ];
