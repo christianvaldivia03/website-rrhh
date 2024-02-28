@@ -1,5 +1,5 @@
 # Install dependencies only when needed
-FROM node:18-alpine3.15 AS deps
+FROM node:20-alpine3.18 AS deps
 # Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
