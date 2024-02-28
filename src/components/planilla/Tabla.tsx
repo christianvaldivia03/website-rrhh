@@ -105,7 +105,7 @@ export const Tabla = ({
                   </td>
                 ))}
                 <td className="py-1 px-4 border-b">
-                  <Link href={`planilla/${item.id_planilla}`} target="_blank">
+                  <Link  href={`planilla/${item.id_planilla}`} target="_blank">
                     <button
                       onClick={() => {
                         // onUpdate(item);
