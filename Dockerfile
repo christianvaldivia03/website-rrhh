@@ -1,22 +1,14 @@
 # Install dependencies only when needed
 FROM node:20-alpine3.18 AS deps
-# Establece el directorio de trabajo dentro del contenedor
-WORKDIR /app
-
-# Copia el archivo package.json y el archivo package-lock.json (o yarn.lock si estás usando Yarn)
-COPY package.json yarn.lock /app/
-
-# Instala las dependencias
-RUN yarn install
-
-# Copia el resto de los archivos de la aplicación
-COPY . /app/
-
-# Construye la aplicación
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+RUN apk add --no-cache libc6-compat
+WORKDIR /usr/src/app
+COPY package.json yarn.lock ./
+COPY . .
+RUN yarn install --frozen-lockfile
 RUN yarn build
-
-# Exponer el puerto en el que se ejecutará la aplicación Next.js
+RUN yarn install --prod
 EXPOSE 3000
 
-# Comando para iniciar la aplicación
-CMD ["yarn", "start"]
+CMD [ "yarn","start" ]
+
