@@ -7,7 +7,6 @@ COPY package.json yarn.lock ./
 COPY . .
 RUN yarn install --frozen-lockfile
 RUN yarn build
-RUN yarn install --prod
 EXPOSE 3000
 
 CMD [ "yarn","start" ]
