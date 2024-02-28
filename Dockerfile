@@ -25,7 +25,8 @@ FROM node:20-alpine3.18 AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN yarn build
+
+# RUN yarn start
 
 # EXPOSE 3000
 
