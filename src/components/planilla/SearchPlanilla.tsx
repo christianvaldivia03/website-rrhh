@@ -39,8 +39,8 @@ export const SearchPlanilla = ({ onSearch }: any) => {
   console.log(dataControler);
 
   const formData = {
-    id_anio: "",
-    id_mes: "",
+    id_anio: 2023,
+    id_mes: "01",
     id_tipo_planilla: "",
     id_tipo_trabajador: "",
     num_planilla: "",
@@ -64,8 +64,8 @@ export const SearchPlanilla = ({ onSearch }: any) => {
                       <div className="col-span-2">
                         <ComboBoxFormik
                           data={[
-                            { id: 1, name: "Natural" },
-                            { id: 2, name: "Juridico" },
+                            { id: 2023, name: "2023" },
+                            { id: 2024, name: "2024" },
                           ]}
                           name="id_anio"
                           // onSubmit={onSubmit}
@@ -79,8 +79,18 @@ export const SearchPlanilla = ({ onSearch }: any) => {
                       <div className="col-span-2">
                         <ComboBoxFormik
                           data={[
-                            { id: 1, name: "Natural" },
-                            { id: 2, name: "Juridico" },
+                            { id: "01", name: "Enero" },
+                            { id: "02", name: "Febrero" },
+                            { id: "03", name: "Marzo" },
+                            { id: "04", name: "Abril" },
+                            { id: "05", name: "Mayo" },
+                            { id: "06", name: "Junio" },
+                            { id: "07", name: "Julio" },
+                            { id: "08", name: "Agosto" },
+                            { id: "09", name: "Septiembre" },
+                            { id: "10", name: "Octubre" },
+                            { id: "11", name: "Noviembre" },
+                            { id: "12", name: "Diciembre" },
                           ]}
                           name="id_mes"
                         />

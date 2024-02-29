@@ -2,6 +2,8 @@
 import { CircleInit } from "@/shared/icons/CircleInit";
 import { Inter } from "next/font/google";
 import React from "react";
+import { Menu } from "../Menu";
+
 const inter = Inter({ subsets: ["latin"] });
 export default function layout({
   children,
@@ -17,9 +19,9 @@ export default function layout({
             <div className="m-4">
               <CircleInit />
             </div>
-            <p className="text-center">Sistema RRHH</p>
+            <p className="text-center text-blanco">Sistema RRHH</p>
           </div>
-          {/* <Menu /> */}
+          <Menu />
         </header>
       </div>
       <main className="flex-1 text-white p-4">{children}</main>

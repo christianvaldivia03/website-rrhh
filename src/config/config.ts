@@ -16,7 +16,8 @@
 // export const SLUG_CARRERA = "farmacia-y-bioquimica";
 
 export const BACKEND_URL =
-  "https://christiandev.eastus.cloudapp.azure.com:3003/api/v1/";
+  // "http://christiandev.eastus.cloudapp.azure.com:3003/api/v1/";
+  "http://localhost:3003/api/v1/";
 
 export const CORE = "core";
 

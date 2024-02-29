@@ -46,7 +46,6 @@ export const CreatePlanilla = ({ handleClose, onCreatePlanilla }: any) => {
   const anioActual = fechaActual.getFullYear();
   const mesActual = (fechaActual.getMonth() + 1).toString().padStart(2, "0");
 
-
   const formData = {
     id_anio: anioActual,
     id_mes: mesActual,
@@ -169,7 +168,7 @@ export const CreatePlanilla = ({ handleClose, onCreatePlanilla }: any) => {
                   <ButtonNext
                     type="submit"
                     className="flex justify-end "
-                    valor="Buscar"
+                    valor="Crear Planilla"
                     classNameBotton="bg-primary text-white letter rounded-sm px-4 py-2 mt-4"
                   />
                 </Form>

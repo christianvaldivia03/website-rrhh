@@ -21,7 +21,7 @@ export const PlanillaInit = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const onSearch = (value: any) => {
-    console.log(value);
+    fetchData(value);
   };
   const onCreatePlanilla = (value: any) => {
     console.log(value);
