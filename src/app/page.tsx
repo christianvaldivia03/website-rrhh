@@ -1,12 +1,11 @@
 "use client";
-import Boton from "@/common/Boton";
-import CheckboxInput from "@/common/CheckboxInput";
 import Image from "next/image";
 import { useImage } from "./controller";
 import { Form, Formik } from "formik";
 import { TextInputFormik } from "@/shared/formikComponents/TextInputFormik";
 import { ButtonNext } from "@/shared/Components/ButtonNext";
 import Link from "next/link";
+import { CheckboxInput } from "@/shared/formikComponents/CheckboxInput";
 
 export default function Home(props: any) {
   const { imageCajero, imageCliente, Images } = useImage();
@@ -25,21 +24,21 @@ export default function Home(props: any) {
           <div className="w-[400px] m-auto h-screen flex flex-col justify-center">
             <p className="ferry text-lg font-[900] mb-12">Sistema de RRHH</p>
             <div className="flex items-center justify-center mb-12 gap-8">
-              <Boton
+              <ButtonNext
                 onClick={() => {
                   // signIn();
                   imageCajero();
                 }}
-                title="Usuario"
-                style={false}
+                valor="Usuario"
+                // style={false}
               />
-              <Boton
+              <ButtonNext
                 onClick={() => {
                   // signIn();
                   imageCliente();
                 }}
-                title="Administrador"
-                style={true}
+                valor="Administrador"
+                // style={true}
               />
             </div>
             <div className="mb-12">
@@ -71,7 +70,7 @@ export default function Home(props: any) {
                     />
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckboxInput />
+                    <CheckboxInput type="" />
                     <p className="text-[#7B8498] text-xs">Mantener inicio</p>
                   </div>
                   <div className="flex items-center justify-center">
